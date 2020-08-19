@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="#" th:action="@{/create-product}" th:object="${product}" method="POST">
+    <div class="form-control">
+        <label for="name">Name:</label>
+        <input type="text" class="form-control" id="name" th:field="*{name}">
+        <p class="alert alert-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">
+    </div>
+    <div class="form-control">
+        <label for="price">Price:</label>
+        <input type="text" class="form-control" id="price" th:field="*{price}">
+        <p class="alert alert-danger" th:if="${#fields.hasErrors('price')}" th:errors="*{price}">
+    </div>
+    <div class="form-control">
+        <label for="quantity">Quantity:</label>
+        <input type="text" class="form-control" id="quantity" th:field="*{quantity}">
+        <p class="alert alert-danger" th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}">
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="reset">Reset</button>
+    </div>
+</form>
+</body>
+</html>
