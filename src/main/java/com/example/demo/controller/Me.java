@@ -13,6 +13,7 @@ import sun.security.util.Debug;
 import javax.servlet.http.HttpServletRequest;
 
 @RestController
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/api/v1/me")
 public class Me {
     @Autowired
@@ -26,7 +27,6 @@ public class Me {
     public Object getData(@ReqUser User user) {
         return dtoBuilderService.buildUserDto(user);
     }
-
 
     @RequestMapping(value="/profile", method = RequestMethod.GET)
     public ResponseEntity<User> getUser(@ReqUser User user) {

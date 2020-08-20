@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/auth")
-@CrossOrigin
 public class JwtAuthenticationController {
 
     @Autowired
@@ -31,7 +30,22 @@ public class JwtAuthenticationController {
         authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
         final UserDetails userDetails = jwtUserDetailsService.loadUserByUsername(authenticationRequest.getUsername());
         final String token = jwtTokenUtil.generateToke(userDetails);
-        return ResponseEntity.ok(token);
+        Token tokenKey = new Token();
+        tokenKey.setAccesstoken(token);
+        tokenKey.getAccesstoken();
+        return ResponseEntity.ok(tokenKey);
+    }
+    class Token {
+        public String getAccesstoken() {
+            return accesstoken;
+        }
+
+        public void setAccesstoken(String accesstoken) {
+            this.accesstoken = accesstoken;
+        }
+
+        public String accesstoken;
+
     }
 
 
