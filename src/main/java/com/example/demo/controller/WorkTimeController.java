@@ -29,5 +29,9 @@ public class WorkTimeController {
     }
 
 
-
+    @GetMapping()
+    public ResponseEntity<WorkTimes> getHistory(@ReqUser User user) {
+        WorkTimes workTimes = workTimeService.getHistory(user);
+        return ResponseEntity.ok(workTimes);
+    }
 }

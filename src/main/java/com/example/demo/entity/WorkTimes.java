@@ -40,7 +40,6 @@ public class WorkTimes {
         this.user = user;
         userId = user.getId();
     }
-
     public Timestamp getCheckin() {
         return checkin;
     }

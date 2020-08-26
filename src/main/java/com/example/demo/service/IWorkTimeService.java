@@ -5,4 +5,5 @@ import com.example.demo.entity.WorkTimes;
 
 public interface IWorkTimeService {
     WorkTimes checkin(WorkTimes worktime, User user);
+    WorkTimes getHistory(User user);
 }
