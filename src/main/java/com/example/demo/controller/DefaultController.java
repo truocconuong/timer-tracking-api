@@ -87,26 +87,26 @@ public class DefaultController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/registration", method = RequestMethod.POST)
-    public ModelAndView createNewUser(@Valid User user, BindingResult bindingResult) {
-        ModelAndView modelAndView = new ModelAndView();
-        User userExists = userService.findUserByUsername(user.getUsername());
-        if (userExists != null) {
-            bindingResult
-                    .rejectValue("username", "error.user",
-                            "There is already a user registered with the user name provided");
-        }
-        if (bindingResult.hasErrors()) {
-            modelAndView.setViewName("register");
-        } else {
-            userService.saveUser(user);
-            modelAndView.addObject("successMessage", "User has been registered successfully");
-            modelAndView.addObject("user", new User());
-            modelAndView.setViewName("register");
-
-        }
-        return modelAndView;
-    }
+//    @RequestMapping(value = "/registration", method = RequestMethod.POST)
+//    public ModelAndView createNewUser(@Valid User user, BindingResult bindingResult) {
+//        ModelAndView modelAndView = new ModelAndView();
+//        User userExists = userService.findUserByUsername(user.getUsername());
+//        if (userExists != null) {
+//            bindingResult
+//                    .rejectValue("username", "error.user",
+//                            "There is already a user registered with the user name provided");
+//        }
+//        if (bindingResult.hasErrors()) {
+//            modelAndView.setViewName("register");
+//        } else {
+//            userService.saveUser(user);
+//            modelAndView.addObject("successMessage", "User has been registered successfully");
+//            modelAndView.addObject("user", new User());
+//            modelAndView.setViewName("register");
+//
+//        }
+//        return modelAndView;
+//    }
 
     @RequestMapping(value="/admin/home", method = RequestMethod.GET)
     public ModelAndView adminhome(){

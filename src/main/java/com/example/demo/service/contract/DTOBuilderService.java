@@ -7,5 +7,5 @@ import java.util.Map;
 
 public interface DTOBuilderService {
     public Map<String, Object> buildProductDto(ProductEntity product);
-    public Map<String, Object> buildUserDto(User product);
+    public Map<String, Object> buildUserDto(User user);
 }

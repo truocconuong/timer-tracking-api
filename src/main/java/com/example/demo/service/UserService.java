@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 
 @Service
 public class UserService implements IUserService{
@@ -47,6 +48,11 @@ public class UserService implements IUserService{
         Role userRole = roleRepository.findByRole("ADMIN");
         user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
         return userRepository.save(user);
+    }
+
+    @Override
+    public List<User> findAllUser() {
+        return (List<User>) userRepository.findAll();
     }
 
 
