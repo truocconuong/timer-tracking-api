@@ -8,7 +8,8 @@ import com.example.demo.service.contract.DTOBuilderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import sun.security.util.Debug;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/work-times")
@@ -30,8 +31,8 @@ public class WorkTimeController {
 
 
     @GetMapping()
-    public ResponseEntity<WorkTimes> getHistory(@ReqUser User user) {
-        WorkTimes workTimes = workTimeService.getHistory(user);
+    public ResponseEntity<List<WorkTimes>> getHistory(@ReqUser User user) {
+       List<WorkTimes> workTimes = workTimeService.getHistory();
         return ResponseEntity.ok(workTimes);
     }
 }

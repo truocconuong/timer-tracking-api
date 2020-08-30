@@ -6,7 +6,7 @@ import com.example.demo.repository.WorkTimeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
+import java.util.List;
 
 @Service
 public class WorkTimeService implements  IWorkTimeService{
@@ -20,9 +20,8 @@ public class WorkTimeService implements  IWorkTimeService{
         return workTimerepository.save(worktime);
     }
 
-    @Override
-    public WorkTimes getHistory(User user) {
-        WorkTimes worktime = (WorkTimes) workTimerepository.findHistoryUser(user.getId());
+    public List<WorkTimes> getHistory() {
+        List<WorkTimes> worktime =workTimerepository.findAll();
         return worktime;
     }
 }

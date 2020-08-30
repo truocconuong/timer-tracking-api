@@ -1,5 +1,7 @@
 package com.example.demo.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -44,9 +46,15 @@ public class User {
     @Column(name = "active")
     private Boolean active;
     @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @JsonIgnore
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
-    
+
+    @OneToMany(mappedBy="user",fetch = FetchType.EAGER)
+    @JsonIgnoreProperties("user")
+    private Set<WorkTimes> work_times;
+
+
     public int getId() {
         return id;
     }

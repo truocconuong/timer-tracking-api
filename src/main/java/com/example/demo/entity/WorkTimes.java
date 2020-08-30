@@ -3,6 +3,8 @@ package com.example.demo.entity;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.sql.Timestamp;
+import java.util.Collection;
+
 @Entity
 @Table(name = "work_times")
 public class WorkTimes {
@@ -20,7 +22,6 @@ public class WorkTimes {
     private Timestamp checkin;
     @Column(name = "checkout")
     private Timestamp checkout;
-
     public WorkTimes() {
     }
 

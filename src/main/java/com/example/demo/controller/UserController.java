@@ -2,21 +2,17 @@ package com.example.demo.controller;
 
 import com.example.demo.auth.ReqUser;
 import com.example.demo.entity.User;
-import com.example.demo.exceptionhandling.BadRequestException;
+import com.example.demo.exceptionhandling.ResourceNotFoundException;
 import com.example.demo.service.UserService;
 import com.example.demo.service.contract.DTOBuilderService;
-import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
-import sun.security.util.Debug;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
-import java.util.Map;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/users")
@@ -47,12 +43,21 @@ public class UserController {
     public ResponseEntity<User> getUser(@ReqUser User user) {
         return ResponseEntity.ok(user);
     }
+
+
+
     @RequestMapping(value = "/create-user", method = RequestMethod.POST)
     public ResponseEntity<User> saveUser(@RequestBody User user, UriComponentsBuilder builder){
         userService.saveUser(user);
-        HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(builder.path("/products/{id}")
-                .buildAndExpand(user.getId()).toUri());
         return new ResponseEntity<>(user, HttpStatus.CREATED);
+    }
+
+
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public ResponseEntity<Optional<User>> getUserById(@PathVariable("id") Integer id) throws ResourceNotFoundException {
+        Optional<User> user = userService.findUserById(id);
+        return ResponseEntity.ok(user);
+
     }
 }
