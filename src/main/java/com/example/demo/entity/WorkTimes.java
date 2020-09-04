@@ -22,6 +22,10 @@ public class WorkTimes {
     private Timestamp checkin;
     @Column(name = "checkout")
     private Timestamp checkout;
+
+    @Column(name = "urls")
+    private String urls;
+
     public WorkTimes() {
     }
 
@@ -57,10 +61,19 @@ public class WorkTimes {
         this.checkout = checkout;
     }
 
-    public WorkTimes(int id, User user, Timestamp checkin, Timestamp checkout) {
+    public String getUrls() {
+        return urls;
+    }
+
+    public void setUrls(String urls) {
+        this.urls = urls;
+    }
+
+    public WorkTimes(int id, User user, Timestamp checkin, Timestamp checkout, String urls) {
         this.id = id;
         this.user = user;
         this.checkin = checkin;
         this.checkout = checkout;
+        this.urls = urls;
     }
 }
