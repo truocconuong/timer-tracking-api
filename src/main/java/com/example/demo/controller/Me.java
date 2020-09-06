@@ -13,7 +13,6 @@ import sun.security.util.Debug;
 import javax.servlet.http.HttpServletRequest;
 
 @RestController
-@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/api/v1/me")
 public class Me {
     @Autowired
